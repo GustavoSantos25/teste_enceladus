@@ -1,3 +1,2 @@
-Teste_Enceladus
-Roda primeiro o comando npm start dentro da pasta Server
+Roda primeiro o comando npm start dentro da pasta Server, 
 Depois roda expo start na pasta de fora msm
