@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Teste_Enceladus_Postgres",
+    "slug": "Teste_Enceladus_Postgres",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
