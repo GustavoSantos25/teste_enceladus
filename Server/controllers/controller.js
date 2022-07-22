@@ -52,6 +52,27 @@ export const select_usuario_by_nusp = (req, res, next) => {
     })
 }
 
+export const select_usuarios_by_unidade = (req, res, next) => {
+    UnidadeEnsino.findOne({ where : { nome : req.params.unidade_ensino}})
+    .then(unidade_ensino => {
+        if(unidade_ensino){
+            Usuario.findAll({ where : { unidade_ensino_id : unidade_ensino.id }})
+            .then(usuarios => {
+                res.status(200).json(usuarios)
+            })
+        }
+        else{
+            res.sendStatus(404)
+        }
+    })
+}
+
+export const select_usuarios_by_curso = (req, res, next) => {
+    Usuario.findAll({ where : { curso : req.params.curso }})
+    .then(usuarios => {
+        res.status(200).json(usuarios)
+    })
+}
 
 export const login = (req, res, next) => {
     Usuario.findOne({ where: {
@@ -105,6 +126,21 @@ export const select_sala_estudos_by_nome = (req, res, next) => {
     .then(sala_estudos => {
         if(sala_estudos){
             res.status(200).json(sala_estudos.toJSON())
+        }
+        else{
+            res.sendStatus(404)
+        }
+    })
+}
+
+export const select_sala_estudos_by_unidade = (req, res, next) => {
+    UnidadeEnsino.findOne({ where : { nome : req.params.unidade_ensino}})
+    .then(unidade_ensino => {
+        if(unidade_ensino){
+            SalaEstudos.findAll({ where : { unidade_ensino_id : unidade_ensino.id }})
+            .then(salas => {
+                res.status(200).json(salas)
+            })
         }
         else{
             res.sendStatus(404)

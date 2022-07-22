@@ -49,7 +49,7 @@ const onInsertHandler = () => {
 }
 
 const onSelectHandler = () => {
-  fetchGET("/usuario/11221934")
+  fetchGET("/usuario/11221933")
   .then(async res => {
     try{
       if(res.status === 200) {
@@ -113,6 +113,42 @@ const onSelecionarSalaEstudosHandler = () => {
   })
 }
 
+const onUsuarioByUnidadeHandler = () => {
+  fetchGET("/usuarios/unidade/IME")
+  .then(async res => {
+    if(res.status === 200){
+      const usuarios = await res.json()
+      console.log(usuarios)
+    }
+    else if(res.status === 404){
+      console.log("A unidade não existe!")
+    }
+  })
+}
+
+const onUsuarioByCursoHandler = () => {
+  fetchGET("/usuarios/curso/Ciência da Computação")
+  .then(async res => {
+    if(res.status === 200){
+      const usuarios = await res.json()
+      console.log(usuarios)
+    }
+  })
+}
+
+const onSalaByUnidadeHandler = () => {
+  fetchGET("/sala_estudos/unidade/FFLCH")
+  .then(async res => {
+    if(res.status === 200){
+      const usuarios = await res.json()
+      console.log(usuarios)
+    }
+    else if(res.status === 404){
+      console.log("A unidade não existe!")
+    }
+  })
+}
+
 export default function App() {
   return (
     <View style={styles.container}>
@@ -132,6 +168,15 @@ export default function App() {
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={onSelecionarSalaEstudosHandler}>
         <Text style={styles.buttonText}>Selecionar Sala de Estudos</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={onUsuarioByUnidadeHandler}>
+        <Text style={styles.buttonText}>Selecionar Usuários por unidade</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={onUsuarioByCursoHandler}>
+        <Text style={styles.buttonText}>Selecionar Usuários por curso</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={onSalaByUnidadeHandler}>
+        <Text style={styles.buttonText}>Selecionar sala por unidade</Text>
       </TouchableOpacity>
     </View>
   );
